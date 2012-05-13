@@ -2,3 +2,5 @@ PBEWithMD5AndDES
 ================
 
 PHP implementation for passphrase based encryption (PBE) as defined in PKCS#5 version 2.0 (RFC 2898)
+
+The key for the cipher (here DES) is derived from the passphrase by applying a hashfunction (here MD5) several times on it.
