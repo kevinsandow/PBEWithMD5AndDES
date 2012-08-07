@@ -38,10 +38,21 @@ class DesEncryptor
      */
     public function transformFinalBlock($text)
     {
-        $padding = $this->_blocksize - strlen($text) % $this->_blocksize;
-        $text .= str_repeat(pack('C', $padding), $padding);
+        if ($this->_encrypt)
+        {
+            $padding = $this->_blocksize - strlen($text) % $this->_blocksize;
+            $text .= str_repeat(pack('C', $padding), $padding);
+        }
 
-        return $this->transformBlock($text);
+        $text = $this->transformBlock($text);
+        
+        if (!$this->_encrypt)
+        {
+            $padding = array_shift(unpack('C', substr($text, -1)));
+            $text = substr($text, 0, strlen($text) - $padding);
+        }
+        
+        return $text;
     }
 
     /**
