@@ -28,7 +28,7 @@ class PkcsKeyGenerator
         $salt = pack('H*', $salt);
         $keyMaterial = '';
         $data = $keystring . $salt;
-        $hashtarget = '';
+        $result = '';
 
         for ($j = 0; $j < $segments; $j++)
         {

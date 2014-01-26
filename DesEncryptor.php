@@ -12,8 +12,10 @@ class DesEncryptor
     /**
      * Creates a symmetric Data Encryption Standard (DES) encryptor object
      * with the specified key and initialization vector.
-     * @param string $key 64bit - The secret key to use for the symmetric algorithm.
-     * @param string $iv 64bit - The initialization vector to use for the symmetric algorithm.
+     *
+     * @param $key
+     * @param $iv
+     * @param bool $encrypt
      */
     public function __construct($key, $iv, $encrypt = true)
     {
@@ -33,7 +35,7 @@ class DesEncryptor
 
     /**
      * Transforms the specified region of the specified byte array using PCKS7 padding.
-     * @param unknown_type $text
+     * @param $text
      * @return string
      */
     public function transformFinalBlock($text)
@@ -48,7 +50,7 @@ class DesEncryptor
         
         if (!$this->_encrypt)
         {
-            $padding = array_shift(unpack('C', substr($text, -1)));
+            $padding = array_values(unpack('C', substr($text, -1)))[0];
             $text = substr($text, 0, strlen($text) - $padding);
         }
         
@@ -57,7 +59,7 @@ class DesEncryptor
 
     /**
      * Transforms the specified region of the specified byte array.
-     * @param unknown_type $text
+     * @param $text
      * @return string
      */
     public function transformBlock($text)

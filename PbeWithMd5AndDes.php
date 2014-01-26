@@ -14,4 +14,16 @@ class PbeWithMd5AndDes
 		
         return base64_encode($encryptor->transformFinalBlock($data));
     }
+
+    public static function decrypt($data, $keystring, $salt,
+		$iterationsMd5, $segments)
+    {
+        $pkcsKeyGenerator = new PkcsKeyGenerator(
+			$keystring, $salt, $iterationsMd5, $segments);
+
+        $encryptor = new DesEncryptor(
+			$pkcsKeyGenerator->getKey(), $pkcsKeyGenerator->getIv(), false);
+
+        return $encryptor->transformFinalBlock(base64_decode($data));
+    }
 }

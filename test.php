@@ -16,6 +16,11 @@ $crypt = PbeWithMd5AndDes::encrypt(
 	$salt, $iterations, $segments
 );
 
-echo '<pre>';
+$decrypt = PbeWithMd5AndDes::decrypt(
+    $crypt, $keystring,
+    $salt, $iterations, $segments
+);
+
 echo $data . PHP_EOL;
 echo $crypt . PHP_EOL;
+echo $decrypt . PHP_EOL;
