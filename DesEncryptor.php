@@ -50,7 +50,8 @@ class DesEncryptor
         
         if (!$this->_encrypt)
         {
-            $padding = array_values(unpack('C', substr($text, -1)))[0];
+	    $aPadding = array_values(unpack('C', substr($text, -1)));
+	    $padding = $aPadding[0];
             $text = substr($text, 0, strlen($text) - $padding);
         }
         
