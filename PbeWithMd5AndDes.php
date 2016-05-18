@@ -43,7 +43,7 @@ class PbeWithMd5AndDes
 	if ($useRandomSalt) {
 	  // add the magic keyword, salt informazionr and encrypted byte
 	  $crypt =  PbeWithMd5AndDes::$MAGIC_SALTED_BYTES .
-	    hex2bin($salt) .
+	    pack("H*", $salt) .
 	    $crypt;
 	}
 
