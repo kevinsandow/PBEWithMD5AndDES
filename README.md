@@ -23,5 +23,6 @@ Key string:      secret
 Crypt data:      U2FsdGVkX188lDJBE9omUNc9iGo9sEarSbSeEQwNgDs=
 Decripted data:  Hello World!
 
-Check it with openssl command: echo 'U2FsdGVkX188lDJBE9omUNc9iGo9sEarSbSeEQwNgDs=' | openssl enc -des -a -d -k 'secret'
+Check it with openssl command:
+echo 'U2FsdGVkX188lDJBE9omUNc9iGo9sEarSbSeEQwNgDs=' | openssl enc -des -a -d -k 'secret'
 ```
